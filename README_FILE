@@ -1,0 +1,43 @@
+Steps to run build , run and execute the commands in the container
+
+1. Copy the give files to folder called psqlpython
+ files to be copied in the above folder 
+ Dockerfile, python-postgresql.py & python_neelima.py
+ 
+2. Run the below command to build the docker image
+	Syntax : docker build -t <image name of your choice> .
+	Ex : docker build -t python-1.2 .
+3. Once the above build is success.You should get an message "Building 14.0s (13/13) FINISHED". To verify the image is available in your local mchine execute the below command
+   docker images
+   
+4. To run the above created image , execute the below command
+	Syntax : docker run --name <image name of your choice> --rm -i -t <name of the image which you have given while building> bash
+	Ex : docker run --name pythonV1.2 --rm -i -t python-1.2 bash
+	
+	once you execute the above command it will login to the container
+5. Verify python3 is installed ( python3 -V)
+
+6. Start the postgresql server with the below command
+   service postgresql start
+   
+7. To check the status of postgresql service
+	service postgresql status
+
+8. login to psql and alter the password for user "postgres"
+	1. To login to psql > psql  -U postgres
+    2. To change the password for postgres user > alter user postgres with password 'postgres';
+	3. \q to exit from psql
+
+9. To create a table and display records from table , run the python-postgresql.py with below command
+	python3 python-postgresql.py
+
+
+	
+10. To exit the container type exit and hit enter in command prompt
+
+11. To check the process status > docker ps -above
+
+12. To delete the container > docker container rm --force <container id from the above command>
+
+13. Below command to delete the image from local docker repository in your machine
+	docker image rm --force python-1.2 
